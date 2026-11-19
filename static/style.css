@@ -1,0 +1,169 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, sans-serif;
+  background: #090d18;
+  color: #f5f7ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top right, rgba(58, 104, 255, 0.22), transparent 30rem),
+    #090d18;
+}
+
+.container {
+  width: min(920px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+.eyebrow {
+  color: #74a0ff;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin-top: 4px;
+  font-size: clamp(2.2rem, 8vw, 4.5rem);
+}
+
+.card,
+.player-card,
+.notice,
+.empty {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(20, 26, 43, 0.88);
+  border-radius: 16px;
+}
+
+.card {
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+form {
+  display: grid;
+  gap: 16px;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  color: #b9c1d8;
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #343d58;
+  border-radius: 10px;
+  background: #0d1220;
+  color: white;
+  padding: 13px 14px;
+  font: inherit;
+}
+
+input:focus {
+  outline: 2px solid #577cff;
+  outline-offset: 2px;
+}
+
+button {
+  border: 0;
+  border-radius: 10px;
+  background: #577cff;
+  color: white;
+  padding: 13px 18px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.notice {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  color: #dfe7ff;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-heading span {
+  border-radius: 999px;
+  background: #577cff;
+  padding: 4px 9px;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.player-card {
+  display: grid;
+  grid-template-columns: 64px 1fr 32px;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+}
+
+.player-card img {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #252d45;
+}
+
+.player-card h3,
+.player-card p {
+  margin: 0;
+}
+
+.player-card p {
+  color: #99a4bf;
+  margin-top: 4px;
+}
+
+.player-card form {
+  display: block;
+}
+
+.delete {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  color: #9ca6be;
+  font-size: 1.4rem;
+}
+
+.delete:hover {
+  color: #ff7c92;
+}
+
+.empty {
+  padding: 24px;
+  color: #99a4bf;
+}
+
+@media (min-width: 680px) {
+  .card form {
+    grid-template-columns: 1fr 1fr auto;
+    align-items: end;
+  }
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Liga 42 Barcelona</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <p class="eyebrow">42 Barcelona</p>
+        <h1>Liga de videojuegos</h1>
+      </header>
+
+      {% for message in get_flashed_messages() %}
+        <div class="notice">{{ message }}</div>
+      {% endfor %}
+
+      <section class="card">
+        <h2>Agregar jugador</h2>
+        <form method="post">
+          <label>
+            Usuario de 42
+            <input
+              name="username"
+              placeholder="ej: bryanfajardo"
+              pattern="[A-Za-z0-9_-]{2,20}"
+              required
+              autofocus
+            >
+          </label>
+          <label>
+            Nombre visible
+            <input name="display_name" placeholder="ej: Bryan" maxlength="50" required>
+          </label>
+          <button type="submit">Registrar</button>
+        </form>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <h2>Participantes</h2>
+          <span>{{ players|length }}</span>
+        </div>
+
+        {% if players %}
+          <div class="player-grid">
+            {% for player in players %}
+              <article class="player-card">
+                <img
+                  src="{{ intra_photo_url(player.username) }}"
+                  alt="Foto de {{ player.display_name }}"
+                  onerror="this.onerror=null;this.src='{{ url_for('static', filename='avatar.svg') }}';"
+                >
+                <div>
+                  <h3>{{ player.display_name }}</h3>
+                  <p>@{{ player.username }}</p>
+                </div>
+                <form
+                  method="post"
+                  action="{{ url_for('delete_player', player_id=player.id) }}"
+                  onsubmit="return confirm('¿Eliminar a {{ player.display_name }}?')"
+                >
+                  <button class="delete" type="submit" aria-label="Eliminar a {{ player.display_name }}">×</button>
+                </form>
+              </article>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="empty">Todavia no hay jugadores registrados.</p>
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>
